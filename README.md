@@ -28,3 +28,20 @@ Database = userdb
 
 
 --------------------------------------------------------------------------------------------------
+
+# HOW TO ADD NEW USER USING CURL
+
+curl --location "http://127.0.0.1:8080/api/users" --header "Content-Type: application/json" --data "{\"firstName\": \"Yossi\", \"lastName\": \"Tal\"}"
+
+curl --location "http://127.0.0.1:8080/api/users" --header "Content-Type: application/json" --data "{\"firstName\": \"Dani\", \"lastName\": \"Cohen\"}"
+
+--------------------------------------------------------------------------------------------------
+
+# HOW TO GET EXIST USER USING CURL
+
+curl --location "http://127.0.0.1:8080/api/users/3"
+
+
+
+--------------------------------------------------------------------------------------------------
+
