@@ -7,8 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
-
-
+import java.util.List;
 
 
 @RestController
@@ -45,6 +44,16 @@ public class UserController {
     }
 
 
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        try {
+            List<User> users = userService.getAllUsers();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Failed to get all users from DB", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {

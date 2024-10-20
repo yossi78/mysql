@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -39,6 +40,11 @@ public class UserService {
         return user;
     }
 
+    public List<User> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        log.info("Retrieved all users, total count: " + users.size());
+        return users;
+    }
 
     public User updateUser(Long userId, User updatedUser) {
         if (userRepository.existsById(String.valueOf(userId))) {
