@@ -1,4 +1,4 @@
-package com.example.mysql.data_layer;
+package com.example.mysql.repository;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

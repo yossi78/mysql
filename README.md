@@ -27,6 +27,14 @@ Password = password
 Database = userdb
 
 
+
+OPEN UI IN BROWSER
+-------------------------------------------------------------------------------------------------------------
+#) Open the browser in the following url:
+http://localhost:8080/
+
+
+
 --------------------------------------------------------------------------------------------------
 
 # HOW TO ADD NEW USER USING CURL

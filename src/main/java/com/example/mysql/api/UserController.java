@@ -1,5 +1,5 @@
 package com.example.mysql.api;
-import com.example.mysql.data_layer.User;
+import com.example.mysql.repository.User;
 import com.example.mysql.exception.ResourceNotFoundException;
 import com.example.mysql.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,14 +56,33 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
-        return userService.updateUser(userId, updatedUser);
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
+        try {
+            User user = userService.updateUser(userId, updatedUser);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (Exception e) {
+            log.error("Failed to get user from DB ");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
     @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable String userId) {
-        userService.deleteUser(userId);
+    public ResponseEntity deleteUser(@PathVariable Long userId) {
+        try {
+            userService.deleteUser(userId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (Exception e) {
+            log.error("Failed to get user from DB ");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+
+
     }
 
 

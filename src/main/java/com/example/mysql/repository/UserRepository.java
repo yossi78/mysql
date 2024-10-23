@@ -1,4 +1,4 @@
-package com.example.mysql.data_layer;
+package com.example.mysql.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
