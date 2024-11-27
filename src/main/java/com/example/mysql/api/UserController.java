@@ -24,8 +24,14 @@ public class UserController {
 
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        try {
+            User savedUser = userService.createUser(user);
+            return new ResponseEntity<>(savedUser, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Failed to save user to DB ");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
